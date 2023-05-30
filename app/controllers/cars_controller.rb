@@ -13,12 +13,15 @@ class CarsController < ApplicationController
   end
 
   def new
-    @cars = Car.new
+    @car = Car.new
+    authorize @car
   end
 
   def create
-    @cars = Car.new(car_params)
-    if @cars.save
+    @car = Car.new(car_params)
+    @car.user = current_user
+    authorize @car
+    if @car.save
       redirect_to car_path(@car)
     else
       render :new, status: :unprocessable_entity
