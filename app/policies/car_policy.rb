@@ -1,10 +1,10 @@
 class CarPolicy < ApplicationPolicy
-  def show
-    true
-  end
-
   def create
     return user
+  end
+
+  def show
+    true
   end
 
   def update
