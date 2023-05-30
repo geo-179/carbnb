@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: [:show]
+  before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   def index
     @cars = Car.all
@@ -14,16 +14,24 @@ class CarsController < ApplicationController
 
   def create
     @cars = Car.new(car_params)
-    @cars.save
+    if @cars.save
+      redirect_to car_path(@car)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
   end
 
   def update
+    @car.update(car_params)
+    redirect_to car_path(@car)
   end
 
   def destroy
+    @car.destroy
+    redirect_to cars_path, status: :see_other
   end
 
   private
