@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :destroy]
+  before_action :set_user_car, only: [:new, :create]
 
   def index
     @transactions = Transaction.all
@@ -14,6 +15,8 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.user = @user
+    @transaction.car = @car
     if @transaction.save
       redirect_to transaction_path(@transaction)
     else
@@ -30,6 +33,11 @@ class TransactionsController < ApplicationController
 
   def set_transaction
     @transaction = Transaction.find(params[:id])
+  end
+
+  def set_user_car
+    @user = User.find(params[:user_id])
+    @car = Car.find(params[:car_id])
   end
 
   def transaction_params
