@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  model: MyString
+  rating: 1.5
+  price: 1
+  location: MyString
+  user: one
+
+two:
+  model: MyString
+  rating: 1.5
+  price: 1
+  location: MyString
+  user: two
