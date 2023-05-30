@@ -1,11 +1,14 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
 
   def index
-    @cars = Car.all
+    @cars = policy_scope(Car)
+    authorize @cars
   end
 
   def show
+    authorize @car
   end
 
   def new
@@ -22,15 +25,18 @@ class CarsController < ApplicationController
   end
 
   def edit
+    authorize @car
   end
 
   def update
     @car.update(car_params)
+    authorize @car
     redirect_to car_path(@car)
   end
 
   def destroy
     @car.destroy
+    authorize
     redirect_to cars_path, status: :see_other
   end
 
