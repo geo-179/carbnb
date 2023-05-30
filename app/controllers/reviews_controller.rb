@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 
+  # Did not add view page for index as I assume we will be displaying reviews on a users or cars page.
   def index
     @reviews = Reviews.all
   end
