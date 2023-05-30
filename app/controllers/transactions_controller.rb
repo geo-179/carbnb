@@ -13,7 +13,11 @@ class TransactionsController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:user_id])
+    @car = Car.find(params[:car_id])
     @transaction = Transaction.new(transaction_params)
+    @transaction.user = @user
+    @transaction.car = @car
     if @transaction.save
       redirect_to transaction_path(@transaction)
     else
