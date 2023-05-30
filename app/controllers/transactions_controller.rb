@@ -23,6 +23,7 @@ class TransactionsController < ApplicationController
 
   def destroy
     @transaction.destroy
+    redirect_to transactions_path, { turbo_method: :delete, turbo_confirm: "Are you sure?" }
   end
 
   private
