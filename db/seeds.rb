@@ -5,7 +5,28 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+
+puts "starting.............................."
+
+Transaction.destroy_all
 Car.destroy_all
+Review.destroy_all
+User.destroy_all
+
+puts "destroyed.............................."
+
+# Seed users
+10.times do
+  User.create(
+    email: Faker::Internet.email,
+    password: Faker::Internet.password,
+    name: Faker::Name.name,
+    description: Faker::Lorem.sentence
+  )
+end
+
+puts "users done!"
 
 Car.create(model: 'Ferrari Roma 2023', rating: 9.5, price: 400, location: 'Los Angeles', user_id: User.first.id, image_url: 'https://www.motortrend.com/uploads/2023/04/2023-Ferrari-Roma-exterior-8.jpg?fit=around%7C875:492.1875')
 Car.create(model: 'Ferrari 458 Italia 2019', rating: 9.2, price: 370, location: 'Miami', user_id: User.last.id, image_url: 'https://i.ytimg.com/vi/YlRlOn5SUgQ/maxresdefault.jpg')
@@ -21,3 +42,48 @@ Car.create(model: 'Porsche 911 2021', rating: 9.2, price: 250, location: 'Sydney
 Car.create(model: 'Porsche Panamera 2019', rating: 9.0, price: 300, location: 'London', user_id: User.last.id, image_url: 'https://www.bentleywashingtondc.com/imagetag/2294/main/l/Used-2019-Porsche-Panamera-Turbo-1605661743.jpg')
 Car.create(model: 'Range Rover Evoque 2017', rating: 8.7, price: 200, location: 'Shanghai', user_id: User.last.id, image_url: 'https://f7432d8eadcf865aa9d9-9c672a3a4ecaaacdf2fee3b3e6fd2716.ssl.cf3.rackcdn.com/C984/U4423/IMG_11779-medium.jpg')
 Car.create(model: 'Range Rover Sport 2019', rating: 8.8, price: 250, location: 'Shanghai', user_id: User.last.id, image_url: 'https://www.vogue4x4.com/assets/509366/large/2a0f68c897be2ece4b881c004199f338_509366.jpg')
+
+puts "cody done!"
+
+# Seed cars
+10.times do
+  Car.create(
+    model: Faker::Vehicle.model,
+    rating: Faker::Number.between(from: 1, to: 5),
+    price: Faker::Number.between(from: 10000, to: 50000),
+    location: Faker::Address.city,
+    user_id: User.pluck(:id).sample
+  )
+end
+
+puts "cars done"
+
+# Seed transactions
+10.times do
+  user = User.all.sample
+  car = Car.where.not(user_id: user.id).sample
+  puts "user: " + user.to_s
+  puts "car: " + car.to_s
+
+  Transaction.create(
+    start_date: Faker::Date.between(from: 1.month.ago, to: Date.today),
+    end_date: Faker::Date.forward(days: 30),
+    status: ["scheduled", "in progress", "completed"].sample,
+    user_id: user.id,
+    car_id: car.id
+  )
+end
+
+puts "transactions done"
+
+# Seed reviews
+10.times do
+  Review.create(
+    rating: Faker::Number.between(from: 1, to: 5),
+    content: Faker::Lorem.paragraph,
+    user_id: User.pluck(:id).sample,
+    transaction_id: Transaction.pluck(:id).sample
+  )
+end
+
+puts "reviews done"
