@@ -1,1 +1,211 @@
-<h1><%= @transactions.count %></h1>
+<%# Banner and title for the page %>
+<div class="w-full h-80 bg-center bg-[url('https://images.unsplash.com/photo-1616549972169-0a0d961c9905?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+  <div class="w-full h-full bg-slate-100 bg-opacity-25">
+    <div class="flex h-full justify-center items-center ">
+      <%# Wanted to add text shadow to title but not supported by Tailwind.  Maybe maunally enter it? %>
+      <h1 class="text-4xl text-white">Transaction History</h1>
+    </div>
+  </div>
+</div>
+
+<%# Bar with the links for filtering the search %>
+<div class="w-full h-16 bg-slate-100 p-3">
+  <form action="#">
+    <div class="flex justify-evenly items-center h-full">
+      <div>
+        <label for="role-names">Transaction Role:</label>
+        <select name="role-names" id="role-names" class="rounded">
+          <option value="all-roles">All</option>
+          <option value="user-role">As User</option>
+          <option value="host-role">As Host</option>
+        </select>
+      </div>
+      <div>
+        <label for="transaction-status">Transaction Status:</label>
+        <select name="transaction-status" id="transaction-status" class="rounded">
+          <option value="trans-all">All</option>
+          <option value="trans-scheduled">Scheduled</option>
+          <option value="trans-in-progress">In Progress</option>
+          <option value="trans-completed">Completed</option>
+         </select>
+      </div>
+      <div>
+        <input type="submit" value="Filter Transactions" class="p-2 rounded-md bg-blue-200 hover:bg-teal-200">
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<%# Container for all transaction cards %>
+<div class="w-full px-20 py-10 mb-10 flex flex-col items-center" >
+  <%#  Div for each card%>
+  <div class="w-full flex h-40 border my-2 rounded-lg shadow">
+    <%# Card image %>
+    <div class="w-1/4 bg-center bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+    </div>
+    <%# Card information %>
+    <div class="w=3/4 flex flex-col grow justify-between px-2 py-1">
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Status:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Confirmation Number:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">User:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Renter:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Pick-up Date:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Pick-up Location:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Drop-off Date:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Drop-off Time:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Total Days:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Total Price:</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# Duplicate cards for skeleton display purposes %>
+
+  <%#  Div for each card%>
+  <div class="w-full flex h-40 my-2 border rounded-lg shadow">
+    <%# Card image %>
+    <div class="w-1/4 bg-center bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+    </div>
+    <%# Card information %>
+    <div class="w=3/4 flex flex-col grow justify-between px-2 py-1">
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Status:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Confirmation Number:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">User:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Renter:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Pick-up Date:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Pick-up Location:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Drop-off Date:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Drop-off Time:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Total Days:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Total Price:</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<%#  Div for each card%>
+  <div class="w-full flex h-40 my-2 border rounded-lg shadow ">
+    <%# Card image %>
+    <div class="w-1/4 bg-center bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+    </div>
+    <%# Card information %>
+    <div class="w=3/4 flex flex-col grow justify-between px-2 py-1">
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Status:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Confirmation Number:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">User:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Renter:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Pick-up Date:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Pick-up Location:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Drop-off Date:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Drop-off Time:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Total Days:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Total Price:</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
