@@ -1,4 +1,7 @@
 class CarPolicy < ApplicationPolicy
+
+
+
   def show
     true
   end
