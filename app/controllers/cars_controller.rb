@@ -13,6 +13,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @car = Car.find(params[:id])
     authorize @car
   end
@@ -24,7 +25,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.user = current_user
+    @car.owner = current_user
     authorize @car
     if @car.save
       redirect_to car_path(@car)
@@ -44,6 +45,7 @@ class CarsController < ApplicationController
   end
 
   def destroy
+    authorize @car
     @car.destroy
     redirect_to cars_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
   end
@@ -55,6 +57,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:model, :price, :location)
+    params.require(:car).permit(:model, :price, :location, photos: [])
   end
 end
