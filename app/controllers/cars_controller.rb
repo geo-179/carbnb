@@ -13,6 +13,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @car = Car.find(params[:id])
     authorize @car
   end
@@ -44,6 +45,7 @@ class CarsController < ApplicationController
   end
 
   def destroy
+    authorize @car
     @car.destroy
     redirect_to cars_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
   end
