@@ -1,4 +1,5 @@
 class CarPolicy < ApplicationPolicy
+
   def create
     return user
   end

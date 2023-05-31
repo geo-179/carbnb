@@ -1,6 +1,11 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :landing]
+
+  def landing
+    # @cars = policy_scope(Car)
+    # authorize @cars
+  end
 
   def index
     @cars = policy_scope(Car)
