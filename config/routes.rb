@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
   resources :cars
+  # get 'user_session', to: 'users/sessions#show'
+  resources :users, only: [:show]
   resources :transactions, only: [:index, :show, :create, :destroy] do
     resources :reviews
   end
