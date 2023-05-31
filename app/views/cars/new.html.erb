@@ -1,6 +1,39 @@
 <h1>New</h1>
-<%= simple_form_for(@car) do |f| %>
+<%= simple_form_for @car do |form| %>
   <!-- [...] -->
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <!-- [...] -->
+  <div>
+    <%= form.label :model %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div>
+    <%= form.label :rating %>
+    <%= form.number_field :rating, step: 1 %>
+  </div>
+
+  <div>
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </div>
+
+  <div>
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.label :user_id %>
+    <%= form.collection_select :user_id, User.all, :id, :email %>
+  </div>
+
+  <div>
+    <%= form.label :image_url %>
+    <%= form.text_field :image_url %>
+  </div>
+
+  <%= form.input :photos, as: :file, input_html: { multiple: true } %>
+
+  <div>
+    <%= form.submit "Create Car" %>
+  </div>
 <% end %>

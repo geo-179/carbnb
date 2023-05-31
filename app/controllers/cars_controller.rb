@@ -25,7 +25,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.user = current_user
+    @car.owner = current_user
     authorize @car
     if @car.save
       redirect_to car_path(@car)
@@ -57,6 +57,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:model, :price, :location)
+    params.require(:car).permit(:model, :price, :location, photos: [])
   end
 end

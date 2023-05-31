@@ -1,6 +1,6 @@
 class CarPolicy < ApplicationPolicy
   def create
-    return user
+    user.present?
   end
 
   def show
