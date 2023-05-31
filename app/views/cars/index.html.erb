@@ -1,24 +1,24 @@
-<div class="bg-cover w-full h-80 bg-no-repeat bg-center bg-[url('https://images.unsplash.com/photo-1530721733923-e2df89901503?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80')]">
+<div class="bg-cover w-full h-80 bg-no-repeat bg-cover bg-center" style="background-image: url('https://hips.hearstapps.com/hmg-prod/images/2020-porsche-taycan-4s-111-1576001340.jpg')">
   <div class="flex justify-center items-center h-full">
-    <h1 class="text-white text-3xl">Rent a Ferrari</h1>
+    <h1 class="text-3xl text-white">Rent a Ferrari</h1>
   </div>
 </div>
 
-<div class="flex flex-wrap">
+<div class="flex flex-wrap justify-center">
 
   <% @cars.each do |car| %>
     <div class="max-w-sm rounded shadow-lg mt-6 shadow-xl bg-white w-80 mr-4 ml-4">
-      <img class="w-full h-40" src="https://www.motortrend.com/uploads/2023/04/2023-Ferrari-Roma-exterior-8.jpg?fit=around%7C875:492.1875" alt="car picture">
-      <div class="flex px-6 py-4 justify-between">
-        <div class="font-bold text-xl"><%= car.model %></div>
+      <img class="w-full h-40"  alt="car picture" src="<%= car.image_url %>">
+      <div class="flex px-3	py-4 justify-between">
+        <div class="font-semibold text-lg w-3/4	"><%= car.model %></div>
           <div class="flex items-center">
               <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">⭐️ <%= car.rating %></p>
           </div>
       </div>
 
-      <div class="px-6 pt-4 pb-2">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">$<%= car.price %>/day</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= car.location %></span>
+      <div class="flex justify-center">
+        <span class="inline-block bg-blue-200 rounded-none px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">$<%= car.price %>/day</span>
+        <span class="inline-block bg-blue-200 rounded-none px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= car.location %></span>
       </div>
     </div>
   <% end %>
