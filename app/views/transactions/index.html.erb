@@ -1,0 +1,45 @@
+<%# Banner and title for the page %>
+<div class="w-full h-20 bg-center bg-[url('https://images.unsplash.com/photo-1616549972169-0a0d961c9905?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+  <div class="flex justify-center items-center">
+    <h1 class="text-4xl">Transaction History</h1>
+  </div>
+</div>
+
+<%# Bar with the links for filtering the search %>
+<div class="w-full h-12 bg-slate-100 flex justify-evenly">
+  <a href="#" class="no-underline text-black">History as User</a>
+  <a href="#" class="no-underline text-black">History as Host</a>
+</div>
+
+<%# Container for the transaction cards %>
+<div class="w-full p-10" >
+  <%#  Div for each card%>
+  <div class="w-4/5 flex h-10">
+    <%# Card image %>
+    <div class="w-1/5 bg-center bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+    </div>
+    <%# Card information %>
+    <div class="w=4/5 flex flex-col justify-between">
+      <div>
+        <p>Status:</p>
+        <p>Confirmation Number:</p>
+      </div>
+      <div>
+        <p>User:</p>
+        <p>Renter:</p>
+      </div>
+      <div>
+        <p>Pick-up Date:</p>
+        <p>Pickup Location:</p>
+      </div>
+      <div>
+        <p>Drop-off Date:</p>
+        <p>Drop-off Location:</p>
+      </div>
+      <div>
+        <p>Total Days:</p>
+        <p>Total Price:</p>
+      </div>
+    </div>
+  </div>
+</div>
