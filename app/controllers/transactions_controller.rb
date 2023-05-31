@@ -1,22 +1,21 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :destroy]
-  before_action :set_user_car, only: [:new, :create]
 
   def index
-    @transactions = Transaction.all
+    @transactions = policy_scope(Transaction)
+    authorize @transactions
   end
 
   def show
-  end
-
-  def new
-    @transaction = Transaction.new
+    authorize @transaction
   end
 
   def create
     @transaction = Transaction.new(transaction_params)
-    @transaction.user = @user
-    @transaction.car = @car
+    @transaction.user = current_user
+    # Figure out later what the parameter naming is in the POST body
+    @transaction.car = Car.find(params[:id])
+    authorize @transaction
     if @transaction.save
       redirect_to transaction_path(@transaction)
     else
@@ -25,6 +24,7 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
+    authorize @transaction
     @transaction.destroy
     redirect_to transactions_path, { turbo_method: :delete, turbo_confirm: "Are you sure?" }
   end
@@ -33,11 +33,6 @@ class TransactionsController < ApplicationController
 
   def set_transaction
     @transaction = Transaction.find(params[:id])
-  end
-
-  def set_user_car
-    @user = User.find(params[:user_id])
-    @car = Car.find(params[:car_id])
   end
 
   def transaction_params
