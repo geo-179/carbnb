@@ -13,43 +13,74 @@
   <div class="mt-16 ml-40 font-serif font-bold text-1xl">
     View By Models
   </div>
+
+  <%# Models Cards %>
   <div class="flex flex-wrap ml-24 mr-24 mt-4 justify-center">
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Tesla</button>
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Tesla") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
         </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Porsche</button>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Tesla</p>
         </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Lamborghini</button>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Porsche") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
         </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Ferrari</button>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Porsche</p>
         </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Mercedes-Benz</button>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Lamborghini") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
         </div>
-    </div>
-      <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">BMW</button>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Lamborghini</p>
         </div>
-    </div>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Ferrari") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+        </div>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Ferrari</p>
+        </div>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Mercedes") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+        </div>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Mercedes-Benz</p>
+        </div>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "BMW") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+        </div>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">BMW</p>
+        </div>
+      </button>
+    <% end %>
   </div>
   <div class="flex justify-items-start w-152 mt-24 ml-40 pl-2 ">
     <div class="w-80">
