@@ -3,8 +3,13 @@ class CarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :landing]
 
   def landing
-    # @cars = policy_scope(Car)
-    # authorize @cars
+    @cars = Car.all
+    @markers = @cars.geocoded.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude
+      }
+    end
   end
 
   def index
