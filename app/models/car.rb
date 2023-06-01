@@ -9,4 +9,31 @@ class Car < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true }
   validates :location, presence: true, inclusion: { in: ['Los Angeles', 'Miami', 'Honolulu', 'Sydney', 'Shanghai', 'London'] }
   validates :model, presence: true
+
+  include PgSearch::Model
+
+  pg_search_scope :search_without_transactions_within_range,
+    against: [:model, :location],
+    associated_against: {
+      transactions: [:start_date, :end_date]
+    },
+    using: {
+      tsearch: { prefix: true }
+    },
+    conditions: ->(search_term, query) {
+      query.where.not(id: Transaction.where('start_date <= ? AND end_date >= ?', search_term, search_term).select(:car_id))
+    }
+
+    scope :available_within_range, ->(start_date, end_date) {
+      joins("LEFT OUTER JOIN transactions ON cars.id = transactions.car_id")
+        .where('transactions.start_date IS NULL OR transactions.start_date > ?', end_date)
+        .or(where('transactions.end_date IS NULL OR transactions.end_date < ?', start_date))
+        .distinct
+    }
+
+    scope :search_by_model_and_location, ->(model, location) {
+      where("model ILIKE ? AND location ILIKE ?", "%#{model}%", "%#{location}%")
+    }
+
+
 end

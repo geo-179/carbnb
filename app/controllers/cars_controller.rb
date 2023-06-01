@@ -9,11 +9,14 @@ class CarsController < ApplicationController
 
   def index
     @cars = policy_scope(Car)
-    authorize @cars
-    if params.present?
-      sql_subquery = "model ILIKE :model AND location ILIKE :location"
-      @cars = @cars.where(sql_subquery, model: "%#{params[:model_search]}%", location: "%#{params[:location]}%")
+    if params[:model].present? || params[:location].present?
+      @cars = @cars.search_by_model_and_location(params[:model], params[:location])
     end
+
+    if params[:start_date].present? && params[:end_date].present?
+      @cars = @cars.available_within_range(params[:start_date], params[:end_date])
+    end
+    authorize @cars
   end
 
   def show
