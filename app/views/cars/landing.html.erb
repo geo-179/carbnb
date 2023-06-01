@@ -19,7 +19,7 @@
     <%# Individual button card %>
     <%= link_to cars_path(model: "Tesla") do%>
       <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./chicago.jpg')]">
         </div>
         <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
           <p class="text-sm font-semibold text-neutral-700">Tesla</p>
@@ -78,6 +78,17 @@
         </div>
         <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
           <p class="text-sm font-semibold text-neutral-700">BMW</p>
+        </div>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Range Rover") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+        </div>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Range Rover</p>
         </div>
       </button>
     <% end %>
