@@ -13,43 +13,74 @@
   <div class="mt-16 ml-40 font-serif font-bold text-1xl">
     View By Models
   </div>
+
+  <%# Models Cards %>
   <div class="flex flex-wrap ml-24 mr-24 mt-4 justify-center">
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Tesla</button>
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Tesla") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
         </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Porsche</button>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Tesla</p>
         </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Lamborghini</button>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Porsche") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
         </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Ferrari</button>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Porsche</p>
         </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Mercedes-Benz</button>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Lamborghini") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
         </div>
-    </div>
-      <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">BMW</button>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Lamborghini</p>
         </div>
-    </div>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Ferrari") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+        </div>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Ferrari</p>
+        </div>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "Mercedes") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+        </div>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">Mercedes-Benz</p>
+        </div>
+      </button>
+    <% end %>
+
+    <%# Individual button card %>
+    <%= link_to cars_path(model: "BMW") do%>
+      <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+        </div>
+        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <p class="text-sm font-semibold text-neutral-700">BMW</p>
+        </div>
+      </button>
+    <% end %>
   </div>
   <div class="flex justify-items-start w-152 mt-24 ml-40 pl-2 ">
     <div class="w-80">
@@ -60,7 +91,9 @@
         Go prepared in a rugged 4x4 to take on winter roads with ease, or a camper van to take you to the trees
       </div>
       <div class="mt-16">
-        <button class="inline-block bg-indigo-300 rounded-full px-10 py-3 text-sm font-semibold text-black mr-2 mb-2">Browse Cars</button>
+        <%= link_to cars_path do %>
+          <button class="inline-block bg-indigo-300 rounded-full px-10 py-3 text-sm font-semibold text-black mr-2 mb-2">Browse Cars</button>
+        <% end %>
       </div>
     </div>
     <div class="ml-36 w-2/4 h-96 bg-cover bg-no-repeat bg-center bg-[url('./lamborghini.jpeg')]"></div>
@@ -68,40 +101,77 @@
   <div class="mt-40 ml-40 font-serif font-bold text-1xl">
     Browse By Destinations
   </div>
+
+  <%# City cards %>
   <div class="flex flex-wrap ml-24 mr-24 mt-4 justify-center">
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]"></div>
-      <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Los Angeles</button>
-      </div>
-    </div>
 
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./london.jpg')]"></div>
-      <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">London</button>
+    <%# Individual City Card %>
+    <%= link_to cars_path(location: "Los Angeles") do %>
+    <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+      <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./losangeles.jpeg')]">
       </div>
-    </div>
+      <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+        <p class="text-sm font-semibold text-neutral-700">Los Angeles</p>
+      </div>
+    </button>
+    <% end %>
 
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./shanghai.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Shanghai</button>
-        </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./seoul.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Sydney</button>
-        </div>
-    </div>
-    <div class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
-      <div class="w-48 h-52 bg-cover bg-no-repeat bg-center bg-[url('./chicago.jpg')]"></div>
-        <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
-        <button class="text-sm font-semibold text-neutral-700">Honolulu</button>
-        </div>
-    </div>
+    <%# Individual City Card %>
+    <%= link_to cars_path(location: "Miami") do %>
+    <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+      <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+      </div>
+      <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+        <p class="text-sm font-semibold text-neutral-700">Miami</p>
+      </div>
+    </button>
+    <% end %>
+
+    <%# Individual City Card %>
+    <%= link_to cars_path(location: "Shanghai") do %>
+    <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+      <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./shanghai.jpg')]">
+      </div>
+      <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+        <p class="text-sm font-semibold text-neutral-700">Shanghai</p>
+      </div>
+    </button>
+    <% end %>
+
+    <%# Individual City Card %>
+    <%= link_to cars_path(location: "London") do %>
+    <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+      <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./london.jpg')]">
+      </div>
+      <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+        <p class="text-sm font-semibold text-neutral-700">London</p>
+      </div>
+    </button>
+    <% end %>
+
+    <%# Individual City Card %>
+    <%= link_to cars_path(location: "Sydney") do %>
+    <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+      <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+      </div>
+      <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+        <p class="text-sm font-semibold text-neutral-700">Sydney</p>
+      </div>
+    </button>
+    <% end %>
+
+    <%# Individual City Card %>
+    <%= link_to cars_path(location: "Honolulu") do %>
+    <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+      <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tokyo.jpg')]">
+      </div>
+      <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+        <p class="text-sm font-semibold text-neutral-700">Honolulu</p>
+      </div>
+    </button>
+    <% end %>
   </div>
+
   <div class="flex justify-items-start w-152 mt-24 ml-40 pl-2 ">
     <div class="mr-36 w-2/4 h-96 bg-cover bg-no-repeat bg-center bg-[url('./ferrari.jpg')]"></div>
       <div class="w-80">
@@ -112,7 +182,9 @@
           Go prepared in a rugged 4x4 to take on winter roads with ease, or a camper van to take you to the trees
         </div>
         <div class="mt-16">
-          <button class="inline-block bg-indigo-300 rounded-full px-10 py-3 text-sm font-semibold text-black mr-2 mb-2">Create an account!</button>
+          <%= link_to new_user_registration_path do %>
+            <button class="inline-block bg-indigo-300 rounded-full px-10 py-3 text-sm font-semibold text-black mr-2 mb-2">Create an account!</button>
+          <% end %>
         </div>
       </div>
     </div>
