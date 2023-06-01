@@ -91,7 +91,9 @@
         Go prepared in a rugged 4x4 to take on winter roads with ease, or a camper van to take you to the trees
       </div>
       <div class="mt-16">
-        <button class="inline-block bg-indigo-300 rounded-full px-10 py-3 text-sm font-semibold text-black mr-2 mb-2">Browse Cars</button>
+        <%= link_to cars_path do %>
+          <button class="inline-block bg-indigo-300 rounded-full px-10 py-3 text-sm font-semibold text-black mr-2 mb-2">Browse Cars</button>
+        <% end %>
       </div>
     </div>
     <div class="ml-36 w-2/4 h-96 bg-cover bg-no-repeat bg-center bg-[url('./lamborghini.jpeg')]"></div>
@@ -180,7 +182,9 @@
           Go prepared in a rugged 4x4 to take on winter roads with ease, or a camper van to take you to the trees
         </div>
         <div class="mt-16">
-          <button class="inline-block bg-indigo-300 rounded-full px-10 py-3 text-sm font-semibold text-black mr-2 mb-2">Create an account!</button>
+          <%= link_to new_user_registration_path do %>
+            <button class="inline-block bg-indigo-300 rounded-full px-10 py-3 text-sm font-semibold text-black mr-2 mb-2">Create an account!</button>
+          <% end %>
         </div>
       </div>
     </div>
