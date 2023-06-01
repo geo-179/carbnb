@@ -4,17 +4,9 @@ class User < ApplicationRecord
   has_many :owned_cars, class_name: "Car", inverse_of: :owner
   has_many :transactions, foreign_key: :user_id
 
-  def scheduled_transactions
-    transactions.where(status: 'scheduled')
-  end
-
-  def in_progress_transactions
-    transactions.where(status: 'in progress')
-  end
-
-  def completed_transactions
-    transactions.where(status: 'completed')
-  end
+  has_many :scheduled_transactions, -> { where(status: 'scheduled') }, class_name: 'Transaction', foreign_key: :user_id
+  has_many :in_progress_transactions, -> { where(status: 'in progress') }, class_name: 'Transaction', foreign_key: :user_id
+  has_many :completed_transactions, -> { where(status: 'completed') }, class_name: 'Transaction', foreign_key: :user_id
 
   has_many :scheduled_cars, -> { where(transactions: { status: 'scheduled' }) }, through: :transactions, source: :car
   has_many :in_progress_cars, -> { where(transactions: { status: 'in progress' }) }, through: :transactions, source: :car
