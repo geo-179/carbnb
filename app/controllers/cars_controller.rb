@@ -10,6 +10,10 @@ class CarsController < ApplicationController
   def index
     @cars = policy_scope(Car)
     authorize @cars
+    if params.present?
+      sql_subquery = "model ILIKE :model AND location ILIKE :location"
+      @cars = @cars.where(sql_subquery, model: "%#{params[:model_search]}%", location: "%#{params[:location]}%")
+    end
   end
 
   def show
