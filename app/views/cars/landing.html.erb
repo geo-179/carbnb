@@ -1,6 +1,6 @@
 <main class="w-full h-full bg-gradient-to-b from-indigo-100 to-green-100">
 <div class="w-full h-96 bg-cover bg-no-repeat bg-center bg-[url('./tree.jpg')]"></div>
-  <div class="flex justify-center">
+<div class="flex justify-center container">
     <div>
       <p class="pl-24 font-serif text-6xl mt-16 mb-4 font-bold">
       Drive Better
@@ -128,14 +128,14 @@
       </p>
     </div>
   </div>
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+  <p class="pl-8 pb-4 font-serif text-cyan-950">2023 @le wagon #1226</p>
 </div>
 
-<div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
-<p class="pl-8 pb-4 font-serif text-cyan-950">2023 @le wagon #1226</p>
 
 
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
