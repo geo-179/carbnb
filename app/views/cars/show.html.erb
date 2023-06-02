@@ -3,7 +3,7 @@
   <% if @car.photos.count > 0 %>
     <div class="w-full h-5/6 bg-cover bg-no-repeat bg-bottom" style="background-image: url('<%= cl_image_path @car.photos[0].key, height: 300, width: 400, crop: :fill %>')"></div>
   <% else %>
-    <div class="w-full h-5/6 bg-cover bg-no-repeat bg-bottom bg-[url('<%= @car.image_url %>')]"></div>
+    <div class="w-full h-5/6 bg-cover bg-no-repeat bg-bottom" style="background-image: url('<%= @car.image_url %>')"></div>
   <% end %>
 </div>
 <div class="w-full h-80 ml-40">
@@ -11,9 +11,9 @@
     <div>
       <p class="font-serif font-bold text-4xl"><%= @car.model %></p>
       <p class="font-serif font-bold text-1xl mt-4">Location: <%= @car.location %></p>
-      <p class="font-serif font-bold text-2xl mt-8">Rating: <%= @car.rating %> / 10</p>
+      <p class="font-serif font-bold text-2xl mt-8">Rating: <%= @average_rating %> / 5</p>
       <% (1..5).each do |i| %>
-        <% if (i*2 - 1) <= @car.rating %>
+        <% if (i) <= @average_rating %>
           <i class="fas fa-star" style="color: #ffdd00;"></i>
         <% else %>
           <i class="fas fa-star" style="color: #001c40;"></i>
@@ -39,7 +39,7 @@
 <div class="w-full">
   <div class="ml-40 w-2/5">
     <p class="font-serif">
-      Description: <%= @user.description %>
+      Description: <%= @car.description %>
     </p>
   </div>
 </div>
@@ -185,18 +185,6 @@
   </div>
 </div>
 <%# user info display for review box%>
-<div class="flex ml-40 mt-24 items-top">
-  <div>
-    <%# user avatar%>
-    <div class="w-32 h-32 rounded-full bg-cover bg-no-repeat bg-bottom bg-[url('./lamborghini.jpeg')]"></div>
-    <p class="ml-5 mt-6 text-1xl font-serif font-bold">Username</p>
-  </div>
-  <div class="ml-12 mt-1">
-    <p>rating ☆ ☆ ☆ ☆ ☆</p>
-    <p class="pt-2 font-light text-neutral-500">Created Date</p>
-    <p class="pt-2 w-2/5 indent-8">I had a wonderful time driving Luke’s Tesla during my highway 1 road trip. The car was clean, worked perfectly and also included some snacks and extra cables which were very thoughtful. Luke was a really great host, helpful, quick to respond and friendly. Highly recommend renting as the process was really simple!</p>
-  </div>
-</div>
 <% if @car.transactions.count > 0 %>
   <% @car.transactions.each do |t| %>
     <% if t.review %>
@@ -209,14 +197,14 @@
         <div class="ml-12 mt-1">
           <p>Rating
             <% (1..5).each do |i| %>
-              <% if (i*2 - 1) <= @t.review.rating %>
+              <% if (i*2 - 1) <= t.review.rating %>
                 <i class="fas fa-star" style="color: #ffdd00;"></i>
               <% else %>
                 <i class="fas fa-star" style="color: #001c40;"></i>
               <% end %>
             <% end %>
           </p>
-          <p class="pt-2 font-light text-neutral-500"><%= t.review.created_at.strftime("%B %d, %Y") %></p>
+          <p class="pt-2 font-light text-neutral-500">Created <%= t.review.created_at.strftime("%B %d, %Y") %></p>
           <p class="pt-2 w-2/5 indent-8"><%= t.review.content %></p>
         </div>
       </div>
