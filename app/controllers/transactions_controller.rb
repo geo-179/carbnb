@@ -3,6 +3,8 @@ class TransactionsController < ApplicationController
 
   def index
     @transactions = policy_scope(Transaction)
+
+    @owned_transactions = current_user.owned_transactions
     # @transactions = Transaction.all
     authorize @transactions
   end

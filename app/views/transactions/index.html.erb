@@ -43,7 +43,74 @@
     <% if @transactions.count > 0 %>
       <% @transactions.each do |transaction| %>
         <%#  Div for each card%>
-        <div class="w-full font-serif text-slate-600 flex h-40 border my-5 rounded-lg shadow hover:shadow-xl hover:shadow-indigo-100 shadow-sky-100 bg-white">
+        <div class="w-full font-serif text-slate-600 flex h-48 border my-5 rounded-lg shadow hover:shadow-xl hover:shadow-indigo-100 shadow-sky-100 bg-white">
+          <%# Card image %>
+          <% if transaction.car.photos.count > 0 %>
+            <div class="w-1/4 bg-center bg-cover rounded-l-lg" style="background-image: url('<%= cl_image_path transaction.car.photos[0].key, height: 300, width: 400, crop: :fill %>')">
+            </div>
+          <% else %>
+            <div class="w-1/4 bg-center bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+            </div>
+          <% end %>
+          <%# Card information %>
+          <div class="w=3/4 flex flex-col grow justify-between px-2 py-1">
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Status: <%= transaction.status %></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Confirmation Number:</p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">User: <%= transaction.user.name %></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Car Owner: <%= transaction.car.owner.name %></p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Pick-up Date: <%= transaction.start_date%></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Pick-up Location: <%= transaction.car.location%></p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Drop-off Date: <%= transaction.end_date%></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Total Days: <%= (transaction.end_date - transaction.start_date).to_i %></p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Total Price: $<%= (transaction.end_date - transaction.start_date).to_i * transaction.car.price %></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">PUT A REVIEW BUTTON HERE</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-center text-32">No transactions</p>
+    <% end %>
+
+
+    <% if @owned_transactions.count > 0 %>
+      <% @owned_transactions.each do |transaction| %>
+        <%#  Div for each card%>
+        <div class="w-full font-serif text-slate-600 flex h-48 border my-5 rounded-lg shadow hover:shadow-xl hover:shadow-indigo-100 shadow-sky-100 bg-white">
           <%# Card image %>
           <% if transaction.car.photos.count > 0 %>
             <div class="w-1/4 bg-center bg-cover rounded-l-lg" style="background-image: url('<%= cl_image_path transaction.car.photos[0].key, height: 300, width: 400, crop: :fill %>')">

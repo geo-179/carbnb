@@ -21,8 +21,12 @@ class TransactionPolicy < ApplicationPolicy
     end
 
     def resolve
-      # scope.where(user_id: user.id)
-      scope.where(user_id: user.id).or(scope.where(car_id: Car.where(user_id: user.id).id))
+      scope.where(user_id: user.id)
+      # cars_array = Car.where(user_id: user.id)
+      # cars_array.each do |car|
+      #   id_array << car.id
+      # end
+      # scope.where(user_id: user.id).or(scope.where(car_id: id_array))
     end
   end
 end
