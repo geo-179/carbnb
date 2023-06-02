@@ -1,6 +1,7 @@
 class Car < ApplicationRecord
   belongs_to :owner, class_name: "User", inverse_of: :owned_cars, foreign_key: "user_id"
-  has_many :transactions, class_name: "Transaction", foreign_key: "car_id"
+
+  has_many :transactions, -> { order(created_at: :desc) }, class_name: "Transaction", foreign_key: "car_id"
 
   has_many :scheduled_transactions, -> { where(status: 'scheduled') }, class_name: 'Transaction', foreign_key: :car_id
   has_many :in_progress_transactions, -> { where(status: 'in progress') }, class_name: 'Transaction', foreign_key: :car_id

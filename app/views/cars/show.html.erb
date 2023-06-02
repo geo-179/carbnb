@@ -1,34 +1,45 @@
 <main class="w-full bg-gradient-to-b from-indigo-100 to-green-100">
 <div class="w-full h-screen">
-  <div class="w-full h-5/6 bg-cover bg-no-repeat bg-bottom bg-[url('./lamborghini.jpeg')]"></div>
+  <% if @car.photos.count > 0 %>
+    <div class="w-full h-5/6 bg-cover bg-no-repeat bg-bottom" style="background-image: url('<%= cl_image_path @car.photos[0].key, height: 300, width: 400, crop: :fill %>')"></div>
+  <% else %>
+    <div class="w-full h-5/6 bg-cover bg-no-repeat bg-bottom" style="background-image: url('<%= @car.image_url %>')"></div>
+  <% end %>
 </div>
 <div class="w-full h-80 ml-40">
   <div class="flex">
     <div>
-      <p class="font-serif font-bold text-4xl">Car Name</p>
-      <p class="font-serif font-bold text-1xl mt-4">Car Model Name</p>
-      <p class="font-serif font-bold text-2xl mt-8">rating</p>
+      <p class="font-serif font-bold text-4xl"><%= @car.model %></p>
+      <p class="font-serif font-bold text-1xl mt-4">Location: <%= @car.location %></p>
+      <p class="font-serif font-bold text-2xl mt-8">Rating: <%= @average_rating %> / 5</p>
+      <% (1..5).each do |i| %>
+        <% if (i) <= @average_rating %>
+          <i class="fas fa-star" style="color: #ffdd00;"></i>
+        <% else %>
+          <i class="fas fa-star" style="color: #001c40;"></i>
+        <% end %>
+      <% end %>
       <div class="flex mt-16">
         <div>
-          <p>electric/fuel</p>
-          <p>number of seats</p>
+          <p>Electric/Fuel</p>
+          <p>Number of Seats</p>
         </div>
         <div class="ml-36">
-          <p>number of doors</p>
-          <p>age</p>
+          <p>Number of Doors</p>
+          <p>Age</p>
         </div>
       </div>
     </div>
     <div class="ml-96 mt-2 flex items-baseline">
     <p class="font-serif font-bold text-3xl">Price</p>
-    <p class="font-serif font text-1xl ml-8">100$/day</p>
+    <p class="font-serif font text-2xl ml-8">$<%= @car.price %>/day</p>
     </div>
   </div>
 </div>
 <div class="w-full">
   <div class="ml-40 w-2/5">
     <p class="font-serif">
-    Description: This Model 3 - one of the first ever made - makes the journey enjoyable. It is equipped with 290 miles of maximum range, convenient access to the Supercharger network of fast charging stations, Autopilot and Full Self-Driving capability (human supervision required), all-season tires, camping and dog mode climate control settings, and the best built-in navigation system of any car out there.
+      Description: <%= @car.description %>
     </p>
   </div>
 </div>
@@ -36,24 +47,57 @@
 <div class="flex ml-40 mt-24 items-top relative">
   <div>
     <%# host avatar%>
-    <div class="w-36 h-36 rounded-full bg-cover bg-no-repeat bg-bottom bg-[url('./lamborghini.jpeg')]"></div>
+    <div class="w-36 h-36 rounded-full bg-cover bg-no-repeat bg-bottom bg-[url('./tokyo.jpg')]"></div>
     <p class="ml-10 mt-6 text-1xl font-serif font-bold">Host By</p>
   </div>
   <div class="ml-24 mt-1">
-    <p class="mr-4 font-serif text-lg font-bold">Rating ☆ ☆ ☆ ☆ ☆</p>
+    <p class="mr-4 font-serif text-lg font-bold">Rating
+
+      <% (1..5).each do |i| %>
+        <% if (i) <= @average_rating %>
+          <i class="fas fa-star" style="color: #ffdd00;"></i>
+        <% else %>
+          <i class="fas fa-star" style="color: #001c40;"></i>
+        <% end %>
+      <% end %>
+    </p>
     <div class="flex pt-3">
-    <p class="mr-4 font-serif text-lg font-bold">Name</p><p class="text-lg font-serif">hostname</p>
+    <p class="mr-4 font-serif text-lg font-bold">Name</p><p class="text-lg font-serif"><%= @car.owner.name %></p>
+    </div>
+
+    <div class="flex pt-3">
+    <p class="mr-4 font-serif text-lg font-bold">Award</p><p class="text-lg font-serif">
+      <% if @user.completed_transactions.count > 20 %>
+        <p>Diamond 💎</p>
+      <% elsif @user.completed_transactions.count > 10 %>
+        <p>Gold 🥇</p>
+      <% elsif @user.completed_transactions.count > 5 %>
+        <p>Silver 🥈</p>
+      <% else %>
+        <p>Bronze 🥉</p>
+      <% end %>
+    </p>
     </div>
     <div class="flex pt-3">
-    <p class="mr-4 font-serif text-lg font-bold">Award</p><p class="text-lg font-serif">some award</p>
+      <p class="font-serif">
+        <p class="mr-4 font-serif text-lg font-bold">Bio </p> <%= @user.description %>
+      </p>
     </div>
-    <p class="pt-6 font-light text-neutral-500">47 trips Joined Feb 2019</p>
-    <p class="pt-2.5 font-light text-neutral-500">Typically responds in 59min</p>
+    <p class="pt-6 font-light text-neutral-500"><%= (@user.transactions.count) %> trips Joined <%= @user.created_at.strftime("%B %d, %Y") %></p>
+    <p class="pt-2.5 font-light text-neutral-500">Last transaction on
+    <% if @user.transactions.count > 0 %>
+      <%= @user.transactions[0].created_at.strftime("%B %d, %Y") %>
+    <% else %>
+      N/A
+    <% end %>
+    </p>
   </div>
 <%# not needed: submit request form%>
   <div class="absolute top-0 right-56 flow-root">
   </div>
 </div>
+
+
 <div class="w-full">
   <p class="ml-40 mt-36 text-4xl font-serif font-bold">Instructions</p>
   <p class="ml-40 mt-12 text-2xl font-serif font-semibold">Parking details</p>
@@ -66,22 +110,63 @@
     <p class="font-bold text-3xl font-serif">Reviews & Ratings</p>
     <div class="mt-8 flex">
       <div>
+        <p class="mt-2 font-serif">Overall</p>
         <p class="mt-2 font-serif">Cleanliness</p>
-        <p class="mt-2 font-serif">Maintanence</p>
         <p class="mt-2 font-serif">Communication</p>
         <p class="mt-2 font-serif">Accuracy</p>
       </div>
       <div class="ml-16 font-light">
-      <p class="mt-2">corresponding rating bars --------------------------------<p>
-      <p class="mt-2">-----------------------------------------------------------<p>
-      <p class="mt-2">-----------------------------------------------------------<p>
-      <p class="mt-2">-----------------------------------------------------------<p>
+
+      <p class="mt-2">
+        <% (1..5).each do |i| %>
+          <% if (i) <= @average_rating %>
+            <i class="fas fa-star" style="color: #ffdd00;"></i>
+          <% else %>
+            <i class="fas fa-star" style="color: #001c40;"></i>
+          <% end %>
+        <% end %>
+      </p>
+
+
+      <p class="mt-2">
+                <% (1..5).each do |i| %>
+          <% if (i) <= @average_cleanliness %>
+            <i class="fas fa-star" style="color: #ffdd00;"></i>
+          <% else %>
+            <i class="fas fa-star" style="color: #001c40;"></i>
+          <% end %>
+        <% end %>
+
+      </p>
+
+      <p class="mt-2">
+                <% (1..5).each do |i| %>
+          <% if (i) <= @average_maintenence %>
+            <i class="fas fa-star" style="color: #ffdd00;"></i>
+          <% else %>
+            <i class="fas fa-star" style="color: #001c40;"></i>
+          <% end %>
+        <% end %>
+
+      </p>
+
+      <p class="mt-2">
+        <% (1..5).each do |i| %>
+          <% if (i) <= @average_accuracy %>
+            <i class="fas fa-star" style="color: #ffdd00;"></i>
+          <% else %>
+            <i class="fas fa-star" style="color: #001c40;"></i>
+          <% end %>
+        <% end %>
+
+      </p>
+
       </div>
     </div>
   </div>
   <div class="mt-2 absolute top-0 right-28">
 <%# review form here%>
-    <form class="w-full max-w-sm mt-8">
+    <%# <form class="w-full max-w-sm mt-8">
       <div class="relative" data-te-input-wrapper-init>
         <textarea
           class="mr-4 peer block border-white w-full rounded py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-25"
@@ -96,46 +181,41 @@
           </button>
         </div>
       </div>
-    </form>
+    </form> %>
   </div>
 </div>
 <%# user info display for review box%>
-<div class="flex ml-40 mt-24 items-top">
-  <div>
-    <%# user avatar%>
-    <div class="w-32 h-32 rounded-full bg-cover bg-no-repeat bg-bottom bg-[url('./lamborghini.jpeg')]"></div>
-    <p class="ml-5 mt-6 text-1xl font-serif font-bold">Username</p>
-  </div>
-  <div class="ml-12 mt-1">
-    <p>rating ☆ ☆ ☆ ☆ ☆</p>
-    <p class="pt-2 font-light text-neutral-500">Created Date</p>
-    <p class="pt-2 w-2/5 indent-8">I had a wonderful time driving Luke’s Tesla during my highway 1 road trip. The car was clean, worked perfectly and also included some snacks and extra cables which were very thoughtful. Luke was a really great host, helpful, quick to respond and friendly. Highly recommend renting as the process was really simple!</p>
-  </div>
-</div>
-<div class="flex ml-40 mt-24 items-top">
-  <div>
-    <%# user avatar%>
-    <div class="w-32 h-32 rounded-full bg-cover bg-no-repeat bg-bottom bg-[url('./lamborghini.jpeg')]"></div>
-    <p class="ml-5 mt-6 text-1xl font-serif font-bold">Username</p>
-  </div>
-  <div class="ml-12 mt-1">
-    <p>rating ☆ ☆ ☆ ☆ ☆</p>
-    <p class="pt-2 font-light text-neutral-500">Created Date</p>
-    <p class="pt-2 w-2/5 indent-8">I had a wonderful time driving Luke’s Tesla during my highway 1 road trip. The car was clean, worked perfectly and also included some snacks and extra cables which were very thoughtful. Luke was a really great host, helpful, quick to respond and friendly. Highly recommend renting as the process was really simple!</p>
-  </div>
-</div>
-<div class="flex ml-40 mt-24 items-top">
-  <div>
-    <%# user avatar%>
-    <div class="w-32 h-32 rounded-full bg-cover bg-no-repeat bg-bottom bg-[url('./lamborghini.jpeg')]"></div>
-    <p class="ml-5 mt-6 text-1xl font-serif font-bold">Username</p>
-  </div>
-  <div class="ml-12 mt-1">
-    <p>rating ☆ ☆ ☆ ☆ ☆</p>
-    <p class="pt-2 font-light text-neutral-500">Created Date</p>
-    <p class="pt-2 w-2/5 indent-8">I had a wonderful time driving Luke’s Tesla during my highway 1 road trip. The car was clean, worked perfectly and also included some snacks and extra cables which were very thoughtful. Luke was a really great host, helpful, quick to respond and friendly. Highly recommend renting as the process was really simple!</p>
-  </div>
-</div>
+<% if @car.transactions.count > 0 %>
+  <% @car.transactions.each do |t| %>
+    <% if t.review %>
+      <div class="flex ml-40 mt-24 items-top">
+        <div>
+          <%# user avatar%>
+          <div class="w-32 h-32 rounded-full bg-cover bg-no-repeat bg-bottom bg-[url('./lamborghini.jpeg')]"></div>
+          <p class="ml-5 mt-6 text-1xl font-serif font-bold"><%= t.user.name %></p>
+        </div>
+        <div class="ml-12 mt-1">
+          <p>Rating
+            <% (1..5).each do |i| %>
+              <% if (i*2 - 1) <= t.review.rating %>
+                <i class="fas fa-star" style="color: #ffdd00;"></i>
+              <% else %>
+                <i class="fas fa-star" style="color: #001c40;"></i>
+              <% end %>
+            <% end %>
+          </p>
+          <p class="pt-2 font-light text-neutral-500">Created <%= t.review.created_at.strftime("%B %d, %Y") %></p>
+          <p class="pt-2 w-2/5 indent-8"><%= t.review.content %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+
+
+
 <%# some bottom space%>
 <div class="h-40 w-full">
 </div>

@@ -1,10 +1,96 @@
 <%# Banner and title for the page %>
 <main class="bg-blue-200 w-full bg-opacity-25">
-  <div class="w-full h-80 bg-cover bg-no-repeat bg-center bg-[url('https://images.unsplash.com/photo-1616549972169-0a0d961c9905?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] bg-black bg-opacity-25">
-    <div class="w-full h-full">
-      <div class="flex h-full justify-center items-center">
-        <%# Wanted to add text shadow to title but not supported by Tailwind.  Maybe maunally enter it? %>
-        <p class="text-4xl font-bold text-blue-100 mb-6 font-serif">Transaction History</p>
+<div class="w-full h-80 bg-cover bg-no-repeat bg-center bg-[url('https://images.unsplash.com/photo-1616549972169-0a0d961c9905?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] bg-black bg-opacity-25">
+  <div class="w-full h-full">
+    <div class="flex h-full justify-center items-center">
+      <%# Wanted to add text shadow to title but not supported by Tailwind.  Maybe maunally enter it? %>
+      <p class="text-4xl font-bold text-blue-100 mb-6 font-serif">Transaction History</p>
+    </div>
+  </div>
+</div>
+
+<%# Bar with the links for filtering the search %>
+<div class="w-full h-20 bg-blue-100 py-4 pb-4">
+  <form action="#">
+    <div class="flex justify-evenly items-center h-full">
+      <div class="font-serif font-normal text-slate-600">
+        <label for="role-names">Transaction Role:</label>
+        <select name="role-names" id="role-names" class="rounded">
+          <option value="all-roles">All</option>
+          <option value="user-role">As User</option>
+          <option value="host-role">As Host</option>
+        </select>
+      </div>
+      <div class="font-serif font-normal text-slate-600">
+        <label for="transaction-status">Transaction Status:</label>
+        <select name="transaction-status" id="transaction-status" class="rounded">
+          <option value="trans-all">All</option>
+          <option value="trans-scheduled">Scheduled</option>
+          <option value="trans-in-progress">In Progress</option>
+          <option value="trans-completed">Completed</option>
+         </select>
+      </div>
+      <div class="font-serif font-normal text-slate-800">
+        <input type="submit" value="Filter Transactions" class="p-3 rounded-md bg-blue-300 hover:bg-blue-200">
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<%# Container for all transaction cards %>
+<div class="w-full px-20 py-10 mb-10 flex flex-col items-center" >
+  <%#  Div for each card%>
+  <div class="w-full font-serif text-slate-600 flex h-40 border my-5 rounded-lg shadow hover:shadow-xl hover:shadow-indigo-100 shadow-sky-100 bg-white">
+    <%# Card image %>
+    <div class="w-1/4 bg-center bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+    </div>
+    <%# Card information %>
+    <div class="w=3/4 flex flex-col grow justify-between px-2 py-1">
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Status:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Confirmation Number:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">User:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Renter:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Pick-up Date:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Pick-up Location:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Drop-off Date:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Drop-off Time:</p>
+        </div>
+      </div>
+      <%# Card row %>
+      <div class="flex">
+        <div class="w-1/2">
+          <p class="">Total Days:</p>
+        </div>
+        <div class="w-1/2">
+          <p class="">Total Price:</p>
+        </div>
       </div>
     </div>
   </div>
