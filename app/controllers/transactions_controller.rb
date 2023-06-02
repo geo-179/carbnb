@@ -3,7 +3,12 @@ class TransactionsController < ApplicationController
 
   def index
     @transactions = policy_scope(Transaction)
-    # @transactions = Transaction.all
+    @owned_transactions = current_user.owned_transactions
+
+    if params[:role].present?
+      @owned_transactions = [] if params[:role] == "user"
+      @transactions = [] if params[:role] == "owner"
+    end
     authorize @transactions
   end
 
