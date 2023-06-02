@@ -1,18 +1,18 @@
 <div class="bg-cover w-full h-80 bg-no-repeat bg-cover bg-center" style="background-image: url('https://hips.hearstapps.com/hmg-prod/images/2020-porsche-taycan-4s-111-1576001340.jpg')">
   <div class="flex justify-center items-center h-full">
-    <h1 class="text-5xl text-white font-serif font-semibold" style="text-shadow: 7px 11px 5px rgba(0,0,0,0.2)">Rent a Super Car</h1>
+    <h1 class="text-5xl text-white font-serif font-semibold" style="text-shadow: 7px 11px 5px rgba(1,0,0,0.2)">Rent a Super Car</h1>
   </div>
 </div>
 
 <%# Search results bar %>
-<div class="w-full bg-blue-200 h-40 px-14 py-6 flex items-center justify-center">
-  <form action="cars" method="get" class="grid grid-cols-3 grid-flow-row gap-6">
+<div class="w-full bg-opacity-75 bg-gradient-to-b from-blue-200 to-transparent h-32 px-52 pb-2 flex items-center justify-items-right">
+  <form action="cars" method="get" class="flex">
     <div>
-      <label for="model" class="font-serif">Keyword:</label>
-      <input type="text" name="model" id="model" class="rounded">
+      <label for="model" class="font-serif pr-2">Keyword:</label>
+      <input type="text" name="model" id="model" class="rounded w-56">
     </div>
     <div>
-      <label for="location" class="font-serif">Location:</label>
+      <label for="location" class="font-serif ml-16 pr-2">Location:</label>
       <select name="location" id="location" class="rounded font-serif">
         <option value="" selected disabled hidden>Select Location</option>
         <option value="Honolulu">Honolulu</option>
@@ -23,30 +23,30 @@
         <option value="Sydney">Sydney</option>
       </select>
     </div>
-    <input type="submit" value="Search" class="text-base px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+    <input type="submit" value="Search" class="ml-16 text-base px-12 py-2 leading-none border rounded text-white bg-blue-300 border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
     <div>
-      <label for="start_date" class="font-serif">Pick-up Date:</label>
+      <label for="start_date" class="font-serif ml-64 pr-2">Pick-up Date:</label>
       <input type="date" name="start_date" id="start_date" class="rounded font-serif">
     </div>
     <div>
-      <label for="end_date" class="font-serif">Drop-off Date:</label>
+      <label for="end_date" class="font-serif ml-16 pr-2">Drop-off Date:</label>
       <input type="date" name="end_date" id="end_date" class="rounded font-serif">
     </div>
   </form>
 </div>
 
 
-
-
+<div class="w-full flex flex-wrap justify-center mt-16">
+<div>
   <% if @cars.length == 0 %>
     <h1 class="text-3xl text-center p-6">No Results Match Your Query</h1>
   <% else %>
-    <div class="grid grid-cols-3 grid-flow-row gap-4">
+    <div class="grid grid-cols-3 grid-flow-row gap-x-52 gap-y-16">
       <% @cars.each do |car| %>
         <%= link_to car_path(car) do %>
-          <div class="max-w-sm rounded shadow-lg mt-6 shadow-xl bg-white w-80 mr-4 ml-4">
-            <img class="w-full h-50 rounded-t"  alt="car picture" src="<%= car.image_url %>">
-            <div class="flex px-3	py-4 justify-between">
+          <div class="rounded shadow-lg mt-6 shadow-xl bg-white w-96">
+            <img class="w-full h-52 rounded-t"  alt="car picture" src="<%= car.image_url %>">
+            <div class="flex px-3	py-4 justify-between align-bottom">
               <div class="font-semibold text-lg w-3/4 font-serif"><%= car.model %></div>
                 <div class="flex items-center">
                     <p class="ml-2 text-sm font-bold text-gray-900">⭐️ <%= car.rating %></p>
@@ -54,11 +54,16 @@
             </div>
 
             <div class="flex justify-between">
-              <span class="inline-block bg-blue-200 rounded-none px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 font-serif ml-2">$<%= car.price %>/day</span>
-              <span class="inline-block bg-blue-200 rounded-none px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 font-serif"><%= car.location %></span>
+              <span class="inline-block bg-sky-200 rounded-none px-3 py-1 text-sm font-serif font-semibold ml-3 my-1 text-gray-700 mr-3 mb-3 font-serif ml-2">$<%= car.price %>/day</span>
+              <span class="inline-block bg-sky-200 rounded-none px-3 py-1 text-sm font-serif font-semibold mr-3 my-1 text-gray-700 mr-3 mb-3 font-serif"><%= car.location %></span>
             </div>
           </div>
         <% end %>
       <% end %>
     </div>
   <% end %>
+  </div>
+<%# some bottom space %>
+  <div class="w-full h-24">
+  </div>
+</div>
