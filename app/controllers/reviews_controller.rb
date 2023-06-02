@@ -10,13 +10,14 @@ class ReviewsController < ApplicationController
   def new
     @review = Review.new
     @review.user = current_user
+    @transaction = Transaction.find(params[:transaction_id])
     authorize @review
   end
 
   def create
     @review = Review.new(review_params)
-    @review.transaction = @transaction
     @review.user = current_user
+    @review.transaction_id = @transaction.id
     authorize @review
     if @review.save
       redirect_to transaction_path(@transaction)
@@ -32,6 +33,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :content)
+    params.require(:review).permit(:rating, :content, :cleanliness_rating, :maintenence_rating, :accuracy_rating, :transaction_id)
   end
 end
