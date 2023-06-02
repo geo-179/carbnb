@@ -11,19 +11,19 @@
 
   <%# Bar with the links for filtering the search %>
   <div class="w-full h-20 bg-blue-100 py-4 pb-4">
-    <form action="#">
+    <form action="transactions" method="get">
       <div class="flex justify-evenly items-center h-full">
         <div class="font-serif font-bold text-slate-600">
-          <label for="role-names">Transaction Role:</label>
-          <select name="role-names" id="role-names" class="rounded">
-            <option value="all-roles">All</option>
-            <option value="user-role">As User</option>
-            <option value="host-role">As Host</option>
+          <label for="role">Transaction Role:</label>
+          <select name="role" id="role" class="rounded">
+            <option value="all">All</option>
+            <option value="user">As User</option>
+            <option value="owner">As Owner</option>
           </select>
         </div>
         <div class="font-serif font-bold text-slate-600">
-          <label for="transaction-status">Transaction Status:</label>
-          <select name="transaction-status" id="transaction-status" class="rounded">
+          <label for=">status">Transaction Status:</label>
+          <select name=">status" id=">status" class="rounded">
             <option value="trans-all">All</option>
             <option value="trans-scheduled">Scheduled</option>
             <option value="trans-in-progress">In Progress</option>
