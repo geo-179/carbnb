@@ -60,7 +60,7 @@ class CarsController < ApplicationController
   def destroy
     authorize @car
     @car.destroy
-    redirect_to cars_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
+    redirect_to user_path(current_user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
   end
 
   private
@@ -70,6 +70,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:model, :price, :location, photos: [])
+    params.require(:car).permit(:model, :price, :location, :rating, photos: [])
   end
 end

@@ -7,13 +7,17 @@ class CarPolicy < ApplicationPolicy
     true
   end
 
+  # def edit
+  #   record.owner == user
+  # end
+
   def update
     # test
-    record.user == user
+    record.user_id == user.id
   end
 
   def destroy
-    record.user == user
+    record.user_id == user.id
   end
 
   class Scope < Scope
