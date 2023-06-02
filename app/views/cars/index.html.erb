@@ -5,14 +5,14 @@
 </div>
 
 <%# Search results bar %>
-<div class="w-full bg-opacity-75 bg-gradient-to-b from-blue-200 to-transparent h-32 px-52 pb-2 flex items-center justify-items-right">
-  <form action="cars" method="get" class="flex">
-    <div>
+<div class="w-full bg-opacity-75 bg-gradient-to-b from-blue-200 to-transparent h-32 px-52 pb-2 flex items-center justify-items-center">
+  <form action="cars" method="get" class="flex justify-evenly w-full">
+    <div class="flex flex-col">
       <label for="model" class="font-serif pr-2">Keyword:</label>
       <input type="text" name="model" id="model" class="rounded w-56">
     </div>
-    <div>
-      <label for="location" class="font-serif ml-16 pr-2">Location:</label>
+    <div class="flex flex-col">
+      <label for="location" class="font-serif pr-2">Location:</label>
       <select name="location" id="location" class="rounded font-serif">
         <option value="" selected disabled hidden>Select Location</option>
         <option value="Honolulu">Honolulu</option>
@@ -23,15 +23,15 @@
         <option value="Sydney">Sydney</option>
       </select>
     </div>
-    <input type="submit" value="Search" class="ml-16 text-base px-12 py-2 leading-none border rounded text-white bg-blue-300 border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
-    <div>
-      <label for="start_date" class="font-serif ml-64 pr-2">Pick-up Date:</label>
+    <div class="flex flex-col">
+      <label for="start_date" class="font-serif pr-2">Pick-up Date:</label>
       <input type="date" name="start_date" id="start_date" class="rounded font-serif">
     </div>
-    <div>
-      <label for="end_date" class="font-serif ml-16 pr-2">Drop-off Date:</label>
+    <div class="flex flex-col">
+      <label for="end_date" class="font-serif pr-2">Drop-off Date:</label>
       <input type="date" name="end_date" id="end_date" class="rounded font-serif">
     </div>
+    <input type="submit" value="Search" class="ml-16 text-base px-12 py-2 leading-none border rounded text-white bg-blue-300 border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
   </form>
 </div>
 
@@ -49,7 +49,7 @@
             <% if car.photos.count > 0%>
               <img class="w-full h-40 rounded-t"  alt="car picture" src="<%= cl_image_path car.photos[0].key, height: 300, width: 400, crop: :fill %>">
             <% else %>
-              <img class="w-full h-40 rounded-t"  alt="car picture" src="./lamborghini.jpeg">
+              <img class="w-full h-40 rounded-t"  alt="car picture" src="<%= car.image_url %>">
             <% end %>
 
             <div class="flex px-3	py-4 justify-between">
