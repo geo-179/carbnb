@@ -12,24 +12,32 @@
 <div class="my-8 px-8">
   <p class="text-3xl text-center font-serif text-slate-800">Current Cars</p>
   <%# Div to hold current car cards %>
-  <div class="grid grid-cols-3 grid-flow-row gap-4">
+  <div class="grid grid-cols-3 grid-flow-row gap-3">
     <% @user.owned_cars.each do |car| %>
-      <%= link_to car_path(car) do %>
-        <div class="max-w-sm rounded shadow-lg mt-6 shadow-xl bg-white w-80 mr-4 ml-4">
-          <img class="w-full h-40 rounded-t"  alt="car picture" src="<%= car.image_url %>">
-          <div class="flex px-3	py-4 justify-between">
-            <div class="font-semibold text-lg w-3/4	"><%= car.model %></div>
-              <div class="flex items-center">
-                  <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">⭐️ <%= car.rating %></p>
-              </div>
-          </div>
+      <div>
+        <%= link_to car_path(car) do %>
+          <div class="max-w-sm rounded shadow-lg mt-6 shadow-xl bg-white w-80 mr-4 ml-4">
+            <% if car.photos.count > 0%>
+              <img class="w-full h-40 rounded-t"  alt="car picture" src="<%= cl_image_path car.photos[0].key, height: 300, width: 400, crop: :fill %>">
+            <% else %>
+              <img class="w-full h-40 rounded-t"  alt="car picture" src="./lamborghini.jpeg">
+            <% end %>
+            <div class="flex px-3	py-4 justify-between">
+              <div class="font-semibold text-lg w-3/4	"><%= car.model %></div>
+                <div class="flex items-center">
+                    <p class="ml-2 text-sm font-bold text-gray-900">⭐️ <%= car.rating %></p>
+                </div>
+            </div>
 
-          <div class="flex justify-center">
-            <span class="inline-block bg-blue-200 rounded-none px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">$<%= car.price %>/day</span>
-            <span class="inline-block bg-blue-200 rounded-none px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= car.location %></span>
+            <div class="flex justify-center items-center">
+              <span class="inline-block bg-blue-200 rounded-none px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">$<%= car.price %>/day</span>
+              <span class="inline-block bg-blue-200 rounded-none px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= car.location %></span>
+              <%= link_to edit_car_path(car) do %><p class="bg-teal-200 px-2 py-1 hover:bg-blue-200 rounded font-serif text-slate-800 mr-2">Edit<p><% end %>
+              <%= link_to car_path(car), data: {turbo_method: :delete, turbo_confirm: "Are you sure?  This action cannot be undone."} do %><p class="bg-red-400 px-2 py-1 hover:bg-teal-200 rounded font-serif text-slate-800">Delete<p><% end %>
+             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     <% end %>
 
     <%= link_to new_car_path do%>

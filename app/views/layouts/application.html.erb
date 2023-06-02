@@ -15,7 +15,7 @@
 
   <body>
     <main>
-      <nav class="flex items-center justify-between flex-wrap bg-blue-200 p-6">
+      <nav class="flex items-center justify-between flex-wrap bg-gradient-to-r from-orange-300 via-blue-200 to-indigo-200 p-6">
 
           <div class="flex-shrink-0 text-white mr-6">
             <%= link_to root_path, class: "flex items-center" do %>
@@ -39,10 +39,12 @@
                 Browse
               </p>
             <% end %>
-            <%= link_to transactions_path do%>
-              <p class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4 font-serif">
-                Transactions
-              </p>
+            <% if current_user %>
+              <%= link_to transactions_path do%>
+                <p class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4 font-serif">
+                  Transactions
+                </p>
+              <% end %>
             <% end %>
             <% if current_user %>
               <%= link_to user_path(current_user) do %>

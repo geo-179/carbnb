@@ -92,7 +92,7 @@ class CarsController < ApplicationController
   def destroy
     authorize @car
     @car.destroy
-    redirect_to cars_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
+    redirect_to user_path(current_user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
   end
 
   private
