@@ -13,7 +13,7 @@
 <div class="w-full h-20 bg-blue-100 py-4 pb-4">
   <form action="#">
     <div class="flex justify-evenly items-center h-full">
-      <div class="font-serif font-bold text-slate-600">
+      <div class="font-serif font-normal text-slate-600">
         <label for="role-names">Transaction Role:</label>
         <select name="role-names" id="role-names" class="rounded">
           <option value="all-roles">All</option>
@@ -21,7 +21,7 @@
           <option value="host-role">As Host</option>
         </select>
       </div>
-      <div class="font-serif font-bold text-slate-600">
+      <div class="font-serif font-normal text-slate-600">
         <label for="transaction-status">Transaction Status:</label>
         <select name="transaction-status" id="transaction-status" class="rounded">
           <option value="trans-all">All</option>
@@ -30,7 +30,7 @@
           <option value="trans-completed">Completed</option>
          </select>
       </div>
-      <div class="font-serif font-bold text-slate-800">
+      <div class="font-serif font-normal text-slate-800">
         <input type="submit" value="Filter Transactions" class="p-3 rounded-md bg-blue-300 hover:bg-blue-200">
       </div>
     </div>
@@ -95,120 +95,168 @@
     </div>
   </div>
 
+  <%# Bar with the links for filtering the search %>
+  <div class="w-full h-20 bg-blue-100 py-4 pb-4">
+    <form action="transactions" method="get">
+      <div class="flex justify-evenly items-center h-full">
+        <div class="font-serif font-bold text-slate-600">
+          <label for="role">Transaction Role:</label>
+          <select name="role" id="role" class="rounded">
+            <option value="all">All</option>
+            <option value="user">As User</option>
+            <option value="owner">As Owner</option>
+          </select>
+        </div>
+        <div class="font-serif font-bold text-slate-600">
+          <label for=">status">Transaction Status:</label>
+          <select name=">status" id=">status" class="rounded">
+            <option value="trans-all">All</option>
+            <option value="trans-scheduled">Scheduled</option>
+            <option value="trans-in-progress">In Progress</option>
+            <option value="trans-completed">Completed</option>
+          </select>
+        </div>
+        <div class="font-serif font-bold text-slate-800">
+          <input type="submit" value="Filter Transactions" class="p-3 rounded-md bg-blue-300 hover:bg-blue-200">
+        </div>
+      </div>
 
-
-  <%# Duplicate cards for skeleton display purposes %>
-
-  <%#  Div for each card%>
-  <div class="w-full font-serif text-slate-600 flex h-40 my-5 border rounded-lg shadow hover:shadow-xl hover:shadow-indigo-100 shadow-sky-100 bg-white">
-    <%# Card image %>
-    <div class="w-1/4 bg-center bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
-    </div>
-    <%# Card information %>
-    <div class="w=3/4 flex flex-col grow justify-between px-2 py-1">
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">Status:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Confirmation Number:</p>
-        </div>
-      </div>
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">User:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Renter:</p>
-        </div>
-      </div>
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">Pick-up Date:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Pick-up Location:</p>
-        </div>
-      </div>
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">Drop-off Date:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Drop-off Time:</p>
-        </div>
-      </div>
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">Total Days:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Total Price:</p>
-        </div>
-      </div>
-    </div>
+    </form>
   </div>
 
+  <%# Container for all transaction cards %>
+  <div class="w-full px-20 py-10 mb-10 flex flex-col items-center" >
+    <% if @transactions.count > 0 %>
+      <% @transactions.each do |transaction| %>
+        <%#  Div for each card%>
+        <div class="w-full font-serif text-slate-600 flex h-48 border my-5 rounded-lg shadow hover:shadow-xl hover:shadow-indigo-100 shadow-sky-100 bg-white">
+          <%# Card image %>
+          <% if transaction.car.photos.count > 0 %>
+            <div class="w-1/4 bg-center bg-cover rounded-l-lg" style="background-image: url('<%= cl_image_path transaction.car.photos[0].key, height: 300, width: 400, crop: :fill %>')">
+            </div>
+          <% else %>
+            <div class="w-1/4 bg-center bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+            </div>
+          <% end %>
+          <%# Card information %>
+          <div class="w=3/4 flex flex-col grow justify-between px-2 py-1">
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Status: <%= transaction.status %></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Confirmation Number:</p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">User: <%= transaction.user.name %></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Car Owner: <%= transaction.car.owner.name %></p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Pick-up Date: <%= transaction.start_date%></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Pick-up Location: <%= transaction.car.location%></p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Drop-off Date: <%= transaction.end_date%></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Total Days: <%= (transaction.end_date - transaction.start_date).to_i %></p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Total Price: $<%= (transaction.end_date - transaction.start_date).to_i * transaction.car.price %></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">PUT A REVIEW BUTTON HERE</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-center text-32">No transactions</p>
+    <% end %>
 
-  <%#  Div for each card%>
-  <div class="w-full font-serif text-slate-600 flex h-40 my-5 border rounded-lg shadow hover:shadow-xl hover:shadow-indigo-100 shadow-sky-100 bg-white">
-    <%# Card image %>
-    <div class="w-1/4 bg-center bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
-    </div>
-    <%# Card information %>
-    <div class="w=3/4 flex flex-col grow justify-between px-2 py-1">
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">Status:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Confirmation Number:</p>
-        </div>
-      </div>
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">User:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Renter:</p>
-        </div>
-      </div>
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">Pick-up Date:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Pick-up Location:</p>
-        </div>
-      </div>
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">Drop-off Date:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Drop-off Time:</p>
-        </div>
-      </div>
-      <%# Card row %>
-      <div class="flex">
-        <div class="w-1/2">
-          <p class="">Total Days:</p>
-        </div>
-        <div class="w-1/2">
-          <p class="">Total Price:</p>
-        </div>
-      </div>
-    </div>
 
+    <% if @owned_transactions.count > 0 %>
+      <% @owned_transactions.each do |transaction| %>
+        <%#  Div for each card%>
+        <div class="w-full font-serif text-slate-600 flex h-48 border my-5 rounded-lg shadow hover:shadow-xl hover:shadow-indigo-100 shadow-sky-100 bg-white">
+          <%# Card image %>
+          <% if transaction.car.photos.count > 0 %>
+            <div class="w-1/4 bg-center bg-cover rounded-l-lg" style="background-image: url('<%= cl_image_path transaction.car.photos[0].key, height: 300, width: 400, crop: :fill %>')">
+            </div>
+          <% else %>
+            <div class="w-1/4 bg-center bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')]">
+            </div>
+          <% end %>
+          <%# Card information %>
+          <div class="w=3/4 flex flex-col grow justify-between px-2 py-1">
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Status: <%= transaction.status %></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Confirmation Number:</p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">User: <%= transaction.user.name %></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Car Owner: <%= transaction.car.owner.name %></p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Pick-up Date: <%= transaction.start_date%></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Pick-up Location: <%= transaction.car.location%></p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Drop-off Date: <%= transaction.end_date%></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">Total Days: <%= (transaction.end_date - transaction.start_date).to_i %></p>
+              </div>
+            </div>
+            <%# Card row %>
+            <div class="flex">
+              <div class="w-1/2">
+                <p class="">Total Price: $<%= (transaction.end_date - transaction.start_date).to_i * transaction.car.price %></p>
+              </div>
+              <div class="w-1/2">
+                <p class="">PUT A REVIEW BUTTON HERE</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-center text-32">No transactions</p>
+    <% end %>
   </div>
-</div>
 </main>

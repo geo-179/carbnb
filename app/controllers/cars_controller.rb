@@ -26,19 +26,52 @@ class CarsController < ApplicationController
   end
 
   def show
-    @user = current_user
     @car = Car.find(params[:id])
+    @user = Car.find(params[:id]).owner
+
+    @review = Review.new
+    @review.user = current_user
+
+    @average_rating = 3
+    @average_cleanliness = 3
+    @average_maintenence = 3
+    @average_accuracy = 3
+    if @car.transactions.count > 0
+      @average_rating = 0
+      @average_cleanliness = 0
+      @average_maintenence = 0
+      @average_accuracy = 0
+      counter = 0
+      @car.transactions.each do |t|
+        if t.review.rating
+          counter += 1
+          @average_rating += t.review.rating
+          @average_cleanliness += t.review.cleanliness_rating
+          @average_maintenence += t.review.maintenence_rating
+          @average_accuracy += t.review.accuracy_rating
+        end
+      end
+      @average_rating /= counter
+      @average_cleanliness /= counter
+      @average_maintenence /= counter
+      @average_accuracy /= counter
+    end
+
     authorize @car
   end
 
   def new
     @car = Car.new
     authorize @car
+    if @car.rating.nil?
+      @car.rating = 5
+    end
   end
 
   def create
     @car = Car.new(car_params)
     @car.owner = current_user
+    @car.rating = 0
     authorize @car
     if @car.save
       redirect_to car_path(@car)
