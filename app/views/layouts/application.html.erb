@@ -35,20 +35,20 @@
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div class="text-sm lg:flex-grow">
             <%= link_to cars_path do %>
-              <p class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4 font-serif">
+              <p class="block mt-4 lg:inline-block text-xl lg:mt-0 text-slate-700 hover:text-white mr-4 ml-8 font-serif">
                 Browse
               </p>
             <% end %>
             <% if current_user %>
               <%= link_to transactions_path do%>
-                <p class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4 font-serif">
+                <p class="block mt-4 lg:inline-block lg:mt-0 text-xl text-slate-700 hover:text-white mr-4 ml-4 font-serif">
                   Transactions
                 </p>
               <% end %>
             <% end %>
             <% if current_user %>
               <%= link_to user_path(current_user) do %>
-                <p class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white font-serif">
+                <p class="block mt-4 lg:inline-block lg:mt-0 text-xl text-slate-700 hover:text-white ml-4 font-serif">
                   My Profile
                 </p>
               <% end %>

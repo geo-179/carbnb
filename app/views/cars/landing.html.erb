@@ -1,10 +1,10 @@
-<main class="w-full h-full bg-gradient-to-b from-slate-100 to-yellow-100">
+<main class="w-full h-full bg-gradient-to-b from-slate-100 to-yellow-100 bg-opacity-50">
 <div class="w-full h-screen">
-<div class="w-full h-4/6 bg-cover bg-no-repeat bg-top bg-[url('./drive.jpg')]"></div>
+<div class="w-full h-2/3 bg-cover bg-no-repeat bg-top bg-[url('./drive.jpg')]"></div>
 <div class="w-full flex justify-center mt-28">
   <div class="flex justify-center">
       <div>
-        <p class="pl-10 font-serif text-7xl mb-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-800 via-yellow-900 to-blue-800"> Drive Better
+        <p class="pl-10 font-serif text-7xl mb-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-900 via-yellow-800 to-blue-800"> Drive Better
         </p>
         <p class="font-serif text-2xl text-yellow-800">
         Luxury car rates so low, you won’t even think twice
@@ -23,10 +23,10 @@
     <div class="flex flex-wrap ml-24 mr-24 mt-4 justify-center">
       <%# Individual button card %>
       <%= link_to cars_path(model: "Tesla") do%>
-        <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
+        <button class="w-48 h-60 bg-blue-300 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./tesla.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center items-center" >
             <p class="text-sm font-semibold text-neutral-700">Tesla</p>
           </div>
         </button>
@@ -37,7 +37,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./porsche.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center items-center" >
             <p class="text-sm font-semibold text-neutral-700">Porsche</p>
           </div>
         </button>
@@ -48,7 +48,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./lamborghini.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center items-center" >
             <p class="text-sm font-semibold text-neutral-700">Lamborghini</p>
           </div>
         </button>
@@ -59,7 +59,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./ferrari.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center items-center" >
             <p class="text-sm font-semibold text-neutral-700">Ferrari</p>
           </div>
         </button>
@@ -70,7 +70,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./mercedesbenz.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center items-center" >
             <p class="text-sm font-semibold text-neutral-700">Mercedes-Benz</p>
           </div>
         </button>
@@ -81,7 +81,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./bmw.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center items-center" >
             <p class="text-sm font-semibold text-neutral-700">BMW</p>
           </div>
         </button>
@@ -92,7 +92,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./rangerover.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center items-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center items-center" >
             <p class="text-sm font-semibold text-neutral-700">Range Rover</p>
           </div>
         </button>
@@ -114,7 +114,7 @@
           <% end %>
         </div>
       </div>
-      <div class="ml-12 w-3/4 h-96 bg-cover bg-no-repeat bg-center bg-[url('./lamborghini.jpeg')]"></div>
+      <div class="ml-12 w-3/4 h-96 bg-cover bg-no-repeat bg-bottom bg-[url('./lamborghini.jpeg')]"></div>
     </div>
     </div>
   </div>
@@ -131,7 +131,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./losangeles.jpeg')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center" >
             <p class="text-sm font-semibold pt-4 text-neutral-700">Los Angeles</p>
           </div>
         </button>
@@ -142,7 +142,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./miami.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center" >
             <p class="text-sm font-semibold pt-4 text-neutral-700">Miami</p>
           </div>
         </button>
@@ -153,7 +153,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./shanghai.jpg')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center" >
             <p class="text-sm font-semibold pt-4 text-neutral-700">Shanghai</p>
           </div>
         </button>
@@ -164,7 +164,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./london.jpg')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center" >
             <p class="text-sm font-semibold pt-4 text-neutral-700">London</p>
           </div>
         </button>
@@ -175,7 +175,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./sydney.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center" >
             <p class="text-sm pt-4 font-semibold text-neutral-700">Sydney</p>
           </div>
         </button>
@@ -186,7 +186,7 @@
         <button class="w-48 h-60 bg-blue-600 m-4 relative drop-shadow-lg">
           <div class="w-48 h-52 absolute top-0 left-0 bg-cover bg-no-repeat bg-center bg-[url('./honolulu.avif')]">
           </div>
-          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-200 flex justify-center" >
+          <div class ="w-48 h-12 absolute bottom-0 left-0 bg-blue-100 flex justify-center" >
             <p class="text-sm font-semibold pt-4 text-neutral-700">Honolulu</p>
           </div>
         </button>
