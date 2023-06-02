@@ -41,8 +41,8 @@ class CarsController < ApplicationController
       @average_cleanliness = 0
       @average_maintenence = 0
       @average_accuracy = 0
+      counter = 0
       @car.transactions.each do |t|
-        counter = 0
         if t.review.rating
           counter += 1
           @average_rating += t.review.rating
@@ -71,6 +71,7 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.owner = current_user
+    @car.rating = 0
     authorize @car
     if @car.save
       redirect_to car_path(@car)
