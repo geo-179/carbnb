@@ -12,9 +12,9 @@ class User < ApplicationRecord
 
   # These are owned car transactions
   has_many :owned_transactions, through: :owned_cars, source: :transactions
-  has_many :scheduled_cars, -> { where(transactions: { status: 'scheduled' }) }, through: :transactions, source: :car
-  has_many :in_progress_cars, -> { where(transactions: { status: 'in progress' }) }, through: :transactions, source: :car
-  has_many :completed_cars, -> { where(transactions: { status: 'completed' }) }, through: :transactions, source: :car
+  has_many :scheduled_cars, -> { where(transactions: { status: 'scheduled' }) }, through: :owned_cars, source: :transactions
+  has_many :in_progress_cars, -> { where(transactions: { status: 'in progress' }) }, through: :owned_cars, source: :transactions
+  has_many :completed_cars, -> { where(transactions: { status: 'completed' }) }, through: :owned_cars, source: :transactions
 
   has_many :reviews
   devise :database_authenticatable, :registerable,

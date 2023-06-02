@@ -5,11 +5,27 @@ class TransactionsController < ApplicationController
     @transactions = policy_scope(Transaction)
     @owned_transactions = current_user.owned_transactions
 
+
+    if params[:status].present?
+      if params[:status] == "scheduled"
+        @transactions = current_user.scheduled_transactions
+        @owned_transactions = current_user.scheduled_cars
+      elsif params[:status] == "in-progress"
+        @transactions = current_user.in_progress_transactions
+        @owned_transactions = current_user.in_progress_cars
+      elsif params[:status] == "completed"
+        @transactions = current_user.completed_transactions
+        @owned_transactions = current_user.completed_cars
+      end
+    end
+
     if params[:role].present?
       @owned_transactions = [] if params[:role] == "user"
       @transactions = [] if params[:role] == "owner"
     end
-    authorize @transactions
+
+
+    authorize @transactions if @transactions.count > 0
   end
 
   def show
