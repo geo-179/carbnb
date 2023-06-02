@@ -65,6 +65,7 @@ gem "pg_search"
 
 gem "geocoder"
 
+gem "font-awesome-sass", "~> 6.1"
 
 
 group :development, :test do

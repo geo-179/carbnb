@@ -44,9 +44,15 @@
     <div class="grid grid-cols-3 grid-flow-row gap-x-52 gap-y-16">
       <% @cars.each do |car| %>
         <%= link_to car_path(car) do %>
-          <div class="rounded shadow-lg mt-6 shadow-xl bg-white w-96">
-            <img class="w-full h-52 rounded-t"  alt="car picture" src="<%= car.image_url %>">
-            <div class="flex px-3	py-4 justify-between align-bottom">
+          <div class="max-w-sm rounded shadow-lg mt-6 shadow-xl bg-white w-80 mr-4 ml-4">
+
+            <% if car.photos.count > 0%>
+              <img class="w-full h-40 rounded-t"  alt="car picture" src="<%= cl_image_path car.photos[0].key, height: 300, width: 400, crop: :fill %>">
+            <% else %>
+              <img class="w-full h-40 rounded-t"  alt="car picture" src="./lamborghini.jpeg">
+            <% end %>
+
+            <div class="flex px-3	py-4 justify-between">
               <div class="font-semibold text-lg w-3/4 font-serif"><%= car.model %></div>
                 <div class="flex items-center">
                     <p class="ml-2 text-sm font-bold text-gray-900">⭐️ <%= car.rating %></p>

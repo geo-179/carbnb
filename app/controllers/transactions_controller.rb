@@ -3,6 +3,7 @@ class TransactionsController < ApplicationController
 
   def index
     @transactions = policy_scope(Transaction)
+    # @transactions = Transaction.all
     authorize @transactions
   end
 
@@ -15,6 +16,7 @@ class TransactionsController < ApplicationController
     @transaction.user = current_user
     # Figure out later what the parameter naming is in the POST body
     @transaction.car = Car.find(params[:id])
+    @transaction.status = "scheduled"
     authorize @transaction
     if @transaction.save
       redirect_to transaction_path(@transaction)
