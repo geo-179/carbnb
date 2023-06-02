@@ -79,6 +79,9 @@ puts "transactions done"
 10.times do
   Review.create(
     rating: Faker::Number.between(from: 1, to: 5),
+    cleanliness_rating: Faker::Number.between(from: 1, to: 5),
+    maintenence_rating: Faker::Number.between(from: 1, to: 5),
+    accuracy_rating: Faker::Number.between(from: 1, to: 5),
     content: Faker::Lorem.paragraph,
     user_id: User.pluck(:id).sample,
     transaction_id: Transaction.pluck(:id).sample

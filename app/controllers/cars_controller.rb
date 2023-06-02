@@ -26,14 +26,46 @@ class CarsController < ApplicationController
   end
 
   def show
-    @user = current_user
     @car = Car.find(params[:id])
+    @user = Car.find(params[:id]).owner
+
+    @review = Review.new
+    @review.user = current_user
+
+    @average_rating = 3
+    @average_cleanliness = 3
+    @average_maintenence = 3
+    @average_accuracy = 3
+    if @car.transactions.count > 0
+      @average_rating = 0
+      @average_cleanliness = 0
+      @average_maintenence = 0
+      @average_accuracy = 0
+      @car.transactions.each do |t|
+        counter = 0
+        if t.review.rating
+          counter += 1
+          @average_rating += t.review.rating
+          @average_cleanliness += t.review.cleanliness_rating
+          @average_maintenence += t.review.maintenence_rating
+          @average_accuracy += t.review.accuracy_rating
+        end
+      end
+      @average_rating /= counter
+      @average_cleanliness /= counter
+      @average_maintenence /= counter
+      @average_accuracy /= counter
+    end
+
     authorize @car
   end
 
   def new
     @car = Car.new
     authorize @car
+    if @car.rating.nil?
+      @car.rating = 5
+    end
   end
 
   def create
@@ -70,6 +102,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:model, :price, :location, photos: [])
+    params.require(:car).permit(:model, :price, :location, :rating, photos: [])
   end
 end
