@@ -9,7 +9,13 @@ class TransactionsController < ApplicationController
       @owned_transactions = [] if params[:role] == "user"
       @transactions = [] if params[:role] == "owner"
     end
-    authorize @transactions
+
+    # if params[:status].present?
+    #   if params[:status] == "scheduled"
+    #     @transactions =
+    # end
+
+    authorize @transactions if @transactions.count > 0
   end
 
   def show
