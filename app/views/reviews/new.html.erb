@@ -1,27 +1,34 @@
-<h1>test</h1>
+<div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center justify-center w-max mx-auto my-10">
+  <div class="w-1/2 mr-6 p-5">
+    <h1 class="font-bold text-xl">Leave a Review</h1>
 
-<%= simple_form_for [@transaction, @review] do |f| %>
-  <div class="form-group">
-    <%= f.label :rating %>
-    <%= f.collection_select :rating, 1..5, :to_s, :to_s, prompt: true, class: "form-control" %>
+    <%= simple_form_for [@transaction, @review] do |f| %>
+      <div class="form-group">
+        <%= f.label :rating %>
+        <%= f.collection_select :rating, 1..5, :to_s, :to_s, prompt: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.input :content, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :cleanliness_rating %>
+        <%= f.collection_select :cleanliness_rating, 1..5, :to_s, :to_s, prompt: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :maintenence_rating %>
+        <%= f.collection_select :maintenence_rating, 1..5, :to_s, :to_s, prompt: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :accuracy_rating %>
+        <%= f.collection_select :accuracy_rating, 1..5, :to_s, :to_s, prompt: true, class: "form-control" %>
+      </div>
+      <div class="actions">
+        <%= f.button :submit, class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-  <div class="form-group">
-    <%= f.label :content %>
-    <%= f.input :content, class: "form-control" %>
+  <div class="w-6/12">
+    <img src="https://w0.peakpx.com/wallpaper/1002/811/HD-wallpaper-bugatti-divo-supercar-luxury-paris-city-vehicle-eiffel-tower.jpg" class="rounded-2xl" alt="">
   </div>
-  <div class="form-group">
-    <%= f.label :cleanliness_rating %>
-    <%= f.collection_select :cleanliness_rating, 1..5, :to_s, :to_s, prompt: true, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :maintenence_rating %>
-    <%= f.collection_select :maintenence_rating, 1..5, :to_s, :to_s, prompt: true, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :accuracy_rating %>
-    <%= f.collection_select :accuracy_rating, 1..5, :to_s, :to_s, prompt: true, class: "form-control" %>
-  </div>
-  <div class="actions">
-    <%= f.button :submit, class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>
